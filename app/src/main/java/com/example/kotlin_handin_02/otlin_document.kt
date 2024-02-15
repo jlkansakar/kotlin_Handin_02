@@ -26,7 +26,8 @@ fun main() {
     xaomiPhone.boostGHz()
     println("The phone has an ${xaomiPhone.screenSizeInInches} inch screen, and has a ${xaomiPhone.chargingPort} charging point. The cpu turbos to ${xaomiPhone.speedInGHz} GHz, and it has strong integrated graphics ${xaomiPhone.integratedGraphics}")
 
-
+    val nikeAirmax: Shoe = Shoe("Nike Airmax", 80, 1)
+    nikeAirmax.identifyProductCategory()
 }
 
 
@@ -74,3 +75,28 @@ class Smartphone(model: String): Computer(model) {
         screenSizeInInches * 0.95 // screen is obscured by crack haha
     }
 }
+
+abstract class Product(val name: String, val price: Int, val quantity: Int){
+    open fun identifyProductCategory(){
+        println("I am a $name")
+    }
+}
+
+class Shoe(name: String, price: Int, quantity: Int): Product(name, price, quantity){
+    override fun identifyProductCategory() {
+        println("I am a ${this.name}")
+    }
+}
+
+class Tshirt(name: String, price: Int, quantity: Int): Product(name, price, quantity){
+    override fun identifyProductCategory() {
+        println("I am a ${this.name}")
+    }
+}
+
+class Book(name: String, price: Int, quantity: Int): Product(name, price, quantity){
+    override fun identifyProductCategory() {
+        println("I am a ${this.name}")
+    }
+}
+
