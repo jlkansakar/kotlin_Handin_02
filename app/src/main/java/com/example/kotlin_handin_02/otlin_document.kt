@@ -1,4 +1,7 @@
 package com.example.kotlin_handin_02
+import kotlin.math.pow
+import kotlin.math.PI
+import kotlin.math.sqrt
 
 fun main() {
     val emp1: Employee = Employee("John", "Doe", 6000)
@@ -28,6 +31,18 @@ fun main() {
 
     val nikeAirmax: Shoe = Shoe("Nike Airmax", 80, 1)
     nikeAirmax.identifyProductCategory()
+
+    val myCircle: Circle = Circle(22.0)
+    println(myCircle.calculateArea())
+    println(myCircle.calculatePerimeter())
+
+    val myRectangle: Rectangle = Rectangle(10, 15)
+    println(myRectangle.calculateArea())
+    println(myRectangle.calculatePerimeter())
+
+    val myTriangle: Triangle = Triangle(10.0, 15.0)
+    println(myTriangle.calculateArea())
+    println(myTriangle.calculatePerimeter())
 }
 
 
@@ -100,3 +115,49 @@ class Book(name: String, price: Int, quantity: Int): Product(name, price, quanti
     }
 }
 
+abstract class Shape(color: String, isTransparent: Boolean){
+    open fun calculatePerimeter(): Int {
+        val perimeter: Int = 0
+        return perimeter
+    }
+    open fun calculateArea(): Int {
+        val area: Int = 0
+        return area
+    }
+}
+
+class Circle(private val radius: Double): Shape(color = "Green", isTransparent = true){
+    override fun calculatePerimeter(): Int {
+        val perimeter: Int = (2 * radius * PI).toInt()
+        return perimeter
+    }
+
+    override fun calculateArea(): Int {
+        val area: Int = (PI * radius.pow(2)).toInt()
+        return area
+    }
+}
+
+class Rectangle(private val height: Int, private val length: Int): Shape(color = "Blue", isTransparent = false){
+    override fun calculatePerimeter(): Int {
+        val perimeter: Int = 2 * height + 2 * length
+        return perimeter
+    }
+
+    override fun calculateArea(): Int {
+        val area: Int = height * length
+        return area
+    }
+}
+
+class Triangle(private val height: Double, private val length: Double, private val hypotenuse: Int = (sqrt(height.pow(2) + length.pow(2))).toInt() ): Shape(color = "Yellow", isTransparent = true){
+    override fun calculatePerimeter(): Int {
+        val perimeter: Int = height.toInt() + length.toInt() + hypotenuse
+        return perimeter
+    }
+
+    override fun calculateArea(): Int {
+        val area: Int = (height.toInt() * length.toInt()) / 2
+        return area
+    }
+}
