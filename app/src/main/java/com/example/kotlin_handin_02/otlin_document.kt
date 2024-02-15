@@ -7,6 +7,26 @@ fun main() {
     println("${emp2.firstName} makes ${emp2.salary * 12} dollars in a year")
     println("After a raise, ${emp1.firstName} makes ${(emp1.salary * 1.1) * 12} in a year")
     println("After a raise, ${emp2.firstName} makes ${(emp2.salary * 1.1) * 12} in a year")
+
+    val asusLaptop: Laptop = Laptop("Asus Chromebook")
+    asusLaptop.screenSizeInInches = 14.0
+    asusLaptop.ramInGB = 16
+    asusLaptop.speedInGHz = 3.5
+    asusLaptop.integratedGraphics = true
+    asusLaptop.cleanLaptop()
+    asusLaptop.boostGHz()
+    println("The laptop has a ${asusLaptop.screenSizeInInches} inch screen, and has ${asusLaptop.ramInGB} GB of ram. The cpu turbos to ${asusLaptop.speedInGHz} GHz, and it has strong integrated graphics ${asusLaptop.integratedGraphics}")
+
+    val xaomiPhone: Smartphone = Smartphone("Xaomi Poco X3")
+    xaomiPhone.chargingPort = "usb-c"
+    xaomiPhone.speedInGHz = 2.4
+    xaomiPhone.screenSizeInInches = 8.9
+    xaomiPhone.integratedGraphics = true
+    xaomiPhone.crackScreen()
+    xaomiPhone.boostGHz()
+    println("The phone has an ${xaomiPhone.screenSizeInInches} inch screen, and has a ${xaomiPhone.chargingPort} charging point. The cpu turbos to ${xaomiPhone.speedInGHz} GHz, and it has strong integrated graphics ${xaomiPhone.integratedGraphics}")
+
+
 }
 
 
@@ -27,9 +47,30 @@ class Employee(firstName: String, lastName: String, salary: Int) {
         }
 }
 
-open class Computer(speedInGHz: Float) {
-    val screenSizeInInches: Int = 0
-    val prebuilt: Boolean = true
-    val
+open class Computer(model: String) {
+    var screenSizeInInches: Double = 0.0
+    var speedInGHz: Double = 0.0
+    var integratedGraphics: Boolean = true
 
+
+    fun boostGHz(){
+        speedInGHz * 2
+    }
+    fun externalGraphicsCard(){
+        integratedGraphics = false
+    }
+}
+
+class Laptop(model: String): Computer(model) {
+    var ramInGB: Int = 0
+    fun cleanLaptop(){
+        speedInGHz * 1.25
+    }
+}
+
+class Smartphone(model: String): Computer(model) {
+    var chargingPort: String = ""
+    fun crackScreen(){
+        screenSizeInInches * 0.95 // screen is obscured by crack haha
+    }
 }
